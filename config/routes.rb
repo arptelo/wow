@@ -1,6 +1,7 @@
 WowApp::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/help"
+  devise_for :users, path_names: {sign_in: "Giris", sign_out: "Cikis"}
+  root  'static_pages#home'
+  match '/help',    to: 'static_pages#help',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
