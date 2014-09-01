@@ -6,6 +6,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link  href="http://fotorama.s3.amazonaws.com/4.6.2/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
@@ -13,7 +14,6 @@
 	<%= render 'layouts/header' %>
 	<div class="container-fluid">
       <%= yield %>
-      <%= render 'layouts/footer' %>
     </div>
 </body>
 </html>

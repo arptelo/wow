@@ -12,7 +12,6 @@ html {
 }
 
 body {
-  padding-top: 60px;
   height: 100%;
 }
 
@@ -65,16 +64,20 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+  color: #666;
   &:hover {
-    color: white;
     text-decoration: none;
   }
+}
+
+.navbar-inner {
+  background-color: rgba(246,246,246,0.8);
+  background-image: none;
 }
 
 /* footer */
@@ -106,25 +109,48 @@ footer {
 /* homepage */
 
 .map {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  width: 50%;
-  top: 47px;
+  position: absolute;
+  height: 50%;
+  min-height: 300px;
+  bottom: 10px;
+  right: 10px;
+  width: 400px;
+  z-index: 1;
+  margin: 10px;
+  padding: 10px;
 }
 
 .sidebar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  top: 10px;
 }
 
 #map-canvas {
   height: 100%;
+  border: 3px solid white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .container-fluid {
   height: 100%;
+  padding: 0;
+}
+
+#info-div {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1;
+  height: 40px;
+  width: 300px;
+  background-color: rgba(246,246,246,0.8);
+  border: 3px solid #FFFFFF;
+  margin: 10px;
+  padding: 10px;
+}
+
+.foto {
+  height:100%;
+  width: 100%;
+  z-index: -1;
 }

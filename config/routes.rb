@@ -1,5 +1,6 @@
 WowApp::Application.routes.draw do
-  devise_for :users, path_names: {sign_in: "Giris", sign_out: "Cikis"}
+  devise_for :users, path_names: {sign_in: "Giris", sign_out: "Cikis"} 
+  resources :wonders, only: [:create, :destroy]
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
