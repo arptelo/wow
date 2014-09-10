@@ -1,10 +1,11 @@
 <% provide(:title, 'Home') %>
-<div class='foto'></div>
-<div class='map'>
+<div class='foto' id='homeFoto'></div>
+<div class='map' id='homeMap'>
 	<div id='map-canvas'></div>
 </div>
 <div id='info-div'>
 	<% @wonders.each do |wonder| %>
-		<input type='hidden' data-lat=<%= wonder.lat %> data-lng=<%= wonder.lng %> >
+		<input type='hidden' data-name="<%= wonder.name %>" data-lat=<%= wonder.lat %> data-lng=<%= wonder.lng %> >
 	<% end %>
+	<span id='pOwner'></span>
 </div>

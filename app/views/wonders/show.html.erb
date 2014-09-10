@@ -1,0 +1,9 @@
+<% provide(:title, 'Dünyanın harikaları') %>
+<div class='map' id='showMap'>
+	<div id='map-canvas'></div>
+</div>
+<div id='wonderChoosen'>
+	<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
+	<div class='foto' id='showFoto'></div>
+	<div id='fotoInfo'></div>
+</div>

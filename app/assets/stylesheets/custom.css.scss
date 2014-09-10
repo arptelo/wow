@@ -13,6 +13,7 @@ html {
 
 body {
   height: 100%;
+  color: #5a5a5a;
 }
 
 section {
@@ -21,13 +22,6 @@ section {
 
 textarea {
   resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
 }
 
 /* typography */
@@ -49,7 +43,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 p {
@@ -62,11 +56,9 @@ p {
 
 #logo {
   float: left;
-  margin-right: 10px;
   font-size: 1.7em;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   color: #666;
@@ -75,9 +67,48 @@ p {
   }
 }
 
-.navbar-inner {
-  background-color: rgba(246,246,246,0.8);
-  background-image: none;
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  .navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: rgba(246,246,246,0.8);
+    background-image: none;
+    .container {
+      width: auto;
+      a {
+        color: #5a5a5a;
+        &:hover {
+          background-color: rgba(246,246,246,0.8);
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+} 
+
+@media (min-width: 768px) {
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 4px;
+  }
 }
 
 /* footer */
@@ -86,11 +117,11 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+  color: $gray-light;
   a {
     color: $gray;
     &:hover {
-      color: $grayDarker;
+      color: $gray-darker;
     }
   }
   small {
@@ -108,27 +139,32 @@ footer {
 
 /* homepage */
 
-.map {
+#homeMap {
   position: absolute;
-  height: 50%;
-  min-height: 300px;
-  bottom: 10px;
-  right: 10px;
+  height: 300px;
+  top: 340px;
+  right: 20px;
   width: 400px;
   z-index: 1;
   margin: 10px;
   padding: 10px;
 }
 
-.sidebar {
+#homeFoto {
+  height:600px;
+  width: 100%;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
 }
 
 #map-canvas {
   height: 100%;
-  border: 3px solid white;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  border: 5px solid white;
 }
 
 .container-fluid {
@@ -138,19 +174,49 @@ footer {
 
 #info-div {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 20px;
+  top: 560px;
   z-index: 1;
-  height: 40px;
-  width: 300px;
-  background-color: rgba(246,246,246,0.8);
-  border: 3px solid #FFFFFF;
-  margin: 10px;
-  padding: 10px;
+  height: 80px;
+  width: 381px;
+  background-color: rgba(200,200,200,0.9);
+  border: 5px solid #FFFFFF;
+  padding: 5px;
+  font-size: 0.8em;
+  display: table;
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 
-.foto {
-  height:100%;
+/* showpage */
+
+#showMap {
+  height:400px;
+  width: 100%;
+  z-index: -1;
+}
+
+#showFoto {
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  left: 100px;
+  top: 420px;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center center;
+}
+
+/* createpage */
+
+#createMap {
+  height:400px;
   width: 100%;
   z-index: -1;
 }
