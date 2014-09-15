@@ -2,8 +2,36 @@
 <div class='map' id='showMap'>
 	<div id='map-canvas'></div>
 </div>
-<div id='wonderChoosen'>
-	<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
-	<div class='foto' id='showFoto'></div>
-	<div id='fotoInfo'></div>
+<div class='container' id='showCon'>
+	<div class='row'>
+		<div class='col-md-6' id='wonderChoosen'>
+			<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
+			<div class='foto' id='showFoto'></div>
+			<div id='fotoInfo'>
+				<span id='pOwner'></span>
+			</div>
+		</div>
+		<div class='col-md6'>
+			<h4><%= @wonder.name %></h4>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-9' id='commentDiv'>
+			<%= form_for(@comment) do |f| %>
+			  <div class="field">
+			    <%= f.text_area :content, placeholder: "Yorum giriniz..." %>
+			  </div>
+			  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+			<% end %>
+			<% if @wonder.comments.any? %>
+				<h3>Yorumlar (<%= @wonder.comments.count %>)</h3>
+				<ol class="showComment">
+					<%= render @comments %>
+				</ol>
+				<%= will_paginate @comments %>
+			<% end %>
+		</div>
+	</div>
+	<div class='col-md-3' id='showSidebar'></div>
 </div>
+<%= render 'layouts/footer' %>

@@ -147,7 +147,7 @@ footer {
   width: 400px;
   z-index: 1;
   margin: 10px;
-  padding: 10px;
+  border: 5px solid white;
 }
 
 #homeFoto {
@@ -164,7 +164,6 @@ footer {
 
 #map-canvas {
   height: 100%;
-  border: 5px solid white;
 }
 
 .container-fluid {
@@ -198,13 +197,12 @@ footer {
   z-index: -1;
 }
 
+#showCon {
+  padding: 20px;
+}
+
 #showFoto {
-  position: absolute;
-  height: 300px;
-  width: 300px;
-  left: 100px;
-  top: 420px;
-  z-index: -1;
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -213,10 +211,76 @@ footer {
   background-position: center center;
 }
 
+#fotoInfo {
+  z-index: 99;
+}
+
+#commentDiv {
+  border-right: 1px solid #c2c2c2;
+  .field {
+    width: 100%;
+    textarea {
+      width: 100%
+    }
+  }
+}
+
+.showComment {
+  list-style: none;
+  margin: 10px 0 0 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.content {
+  display: block;
+}
+
+.timestamp {
+  color: $gray-light;
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+#showCon {
+  background-color: rgba(240, 240, 240, 1);
+  border: 1px solid #e3e3e3;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#showSidebar {
+}
+
 /* createpage */
 
 #createMap {
-  height:400px;
+  height:100%;
   width: 100%;
   z-index: -1;
+}
+
+#formDiv {
+  position: absolute;
+  top: 45%;
+  right: 40px;
+  height: 100px;
+  width: 400px;
+  background-color: rgba(240,240,240,0.8);
+  padding: 10px;
+  margin: auto;
+  z-index: 1;
+  border: 1px solid #c2c2c2;
+  textarea {
+    width: 100%;
+  }
 }

@@ -39,11 +39,13 @@ changeBgImage = ($fotoDiv, $infoDiv, data) ->
 		nextWonder()
 	else
 		$fotoDiv.css 'background-image', 'url(' + data.photos[counter].photo_file_url + ')'
+		$('#showFoto').css 'height', data.photos[counter].height
+		$('#showFoto').css 'width', data.photos[counter].width
 		$infoDiv.find('#pOwner').html($infoDiv.find('input').eq(wonderCounter-1).data('name') + "<br>" + data.photos[counter].photo_title + "<br>Fotoğraf Sahibi: " + data.photos[counter].owner_name)
 		counter++
 
-@getPhotos = (lat, lng, $fotoDiv, $infoDiv, putMarker = false) ->
-	url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=3&minx=' + lng + '&miny=' + lat + '&maxx=' + (lng+0.005) + '&maxy=' + (lat+0.005) + '&callback=?&size=original&mapfilter=false'
+@getPhotos = (lat, lng, $fotoDiv, $infoDiv, putMarker = false, photoSize = 'original') ->
+	url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=3&minx=' + lng + '&miny=' + lat + '&maxx=' + (lng+0.005) + '&maxy=' + (lat+0.005) + '&callback=?&size=' + photoSize + '&mapfilter=false'
 	$.getJSON(url, {format: 'jsonp'})
 		.done (data) ->
 			if putMarker

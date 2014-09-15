@@ -14,14 +14,13 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="active"><%= link_to "Anasayfa",    '#' %></li>
-              <% if user_signed_in? %>
-                <li>Merhaba <strong><%= current_user.email %></strong></li>
-                <li><%= link_to 'Düzenle', edit_user_registration_path %></li>
-                <li><%= link_to 'Çıkış', destroy_user_session_path, method: :delete %></li>
-              <% else %>
-                <li><%= link_to 'Kayıt ol', new_user_registration_path %></li>
-                <li><%= link_to "Giriş", new_user_session_path %></li>
-              <% end %>
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.email, edit_user_registration_path %></li>
+              <li><%= link_to 'Çıkış', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'Kayıt ol', new_user_registration_path %></li>
+              <li><%= link_to "Giriş", new_user_session_path %></li>
+            <% end %>
             <li><%= link_to "Yardım",    '#' %></li>
           </ul>
         </div>

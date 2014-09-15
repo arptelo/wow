@@ -2,11 +2,13 @@
 <div class='map' id='createMap'>
 	<div id='map-canvas'></div>
 </div>
-<%= form_for(@wonder) do |f| %>
-  <div class="field">
-  	<%= f.text_area(:name, placeholder: "İsim giriniz...") %>
-  	<%= f.text_area(:lat, :value => "") %>
-  	<%= f.text_area(:lng, :value => "") %>
-  </div>
-  <%= f.submit "Ekle", class: "btn btn-large btn-primary" %>
-<% end %>
+<div id='formDiv'>
+	<%= form_for(@wonder) do |f| %>
+	  <div class="field">
+	  	<%= f.text_area(:name, placeholder: "İsim giriniz...") %>
+	  	<%= f.hidden_field(:lat, :value => "") %>
+	  	<%= f.hidden_field(:lng, :value => "") %>
+	  </div>
+	  <%= f.submit "Ekle", class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>

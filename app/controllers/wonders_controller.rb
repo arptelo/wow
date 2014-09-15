@@ -18,6 +18,8 @@ class WondersController < ApplicationController
 
   def show
     @wonder = Wonder.find(params[:id])
+    @comments = @wonder.comments.paginate(page: params[:page])
+    @comment = current_user.comments.build if signed_in?
   end
 
   def destroy
