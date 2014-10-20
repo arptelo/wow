@@ -1,6 +1,6 @@
 WowApp::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "Giris", sign_out: "Cikis"} 
-  resources :wonders, only: [:new, :create, :destroy, :show]
+  resources :wonders, only: [:new, :create, :destroy, :show, :update, :index]
   resources :comments, only: [:create, :destroy]
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'

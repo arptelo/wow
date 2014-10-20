@@ -1,6 +1,9 @@
 <% provide(:title, 'Dünyanın harikaları') %>
 <div class='map' id='createMap'>
 	<div id='map-canvas'></div>
+	<% @wonders.each do |wonder| %>
+		<input type='hidden' data-name="<%= wonder.name %>" data-lat=<%= wonder.lat %> data-lng=<%= wonder.lng %> >
+	<% end %>
 </div>
 <div id='formDiv'>
 	<%= form_for(@wonder) do |f| %>

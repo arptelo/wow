@@ -11,27 +11,39 @@
 				<span id='pOwner'></span>
 			</div>
 		</div>
-		<div class='col-md6'>
-			<h4><%= @wonder.name %></h4>
+		<div class='col-md-6'>
+			<h4><%= @wonder.name %></h3>
+			<% if @wonder.properties.present? %>
+				<% @wonder.properties.each do |key, value| %>
+					<p><%= key %>: <%= value %></p>
+				<% end %>
+			<% end %>
+			<% if signed_in? %>
+				<p>Yeni özellik ekleyin</p>
+				<%= render 'shared/properties_form' %>
+			<% end %>
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-md-9' id='commentDiv'>
-			<%= form_for(@comment) do |f| %>
-			  <div class="field">
-			    <%= f.text_area :content, placeholder: "Yorum giriniz..." %>
-			  </div>
-			  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+			<% if signed_in? %>
+				<%= render 'shared/comment_form' %>
 			<% end %>
 			<% if @wonder.comments.any? %>
 				<h3>Yorumlar (<%= @wonder.comments.count %>)</h3>
 				<ol class="showComment">
 					<%= render @comments %>
 				</ol>
-				<%= will_paginate @comments %>
+				<%= will_paginate @comments, :previous_label => 'Önceki', :next_label => 'Sonraki' %>
+			<% end %>
+		</div>
+		<div class='col-md-3' id='showSidebar'>
+			<% @wonders.each do |wonder| %>
+				<div>
+					<span><%= wonder.name %></span>
+				</div>
 			<% end %>
 		</div>
 	</div>
-	<div class='col-md-3' id='showSidebar'></div>
 </div>
 <%= render 'layouts/footer' %>

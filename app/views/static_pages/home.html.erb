@@ -1,5 +1,12 @@
-<% provide(:title, 'Home') %>
-<div class='foto' id='homeFoto'></div>
+<% provide(:title, 'Anasayfa') %>
+<div class='foto' id='homeFoto'>
+	<div class="searchForm">
+		<p>Dünyanın harikalarını keşfedin</p>
+		<%= form_tag wonders_path, method: :get do %>
+			<%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Bul..." %>
+		<% end %>
+	</div>
+</div>
 <div class='map' id='homeMap'>
 	<div id='map-canvas'></div>
 </div>

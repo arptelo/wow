@@ -1,0 +1,12 @@
+<% provide(:title, 'Harikalar') %>
+
+<div id="wonders">
+<% @wonders.each do |w| %>
+  <h2>
+    <%= link_to w.name, w %>
+    <span class="comments">(<%= pluralize(w.comments.size, 'comment') %>)</span>
+  </h2>
+<% end %>
+</div>
+
+<%= will_paginate @wonders %>

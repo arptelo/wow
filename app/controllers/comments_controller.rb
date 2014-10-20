@@ -3,13 +3,12 @@ class CommentsController < ApplicationController
 	
 	def create
 		@comment = current_user.comments.build(comment_params)
-		@comment.wonder_id = params[:id]
 		if @comment.save
-	    	flash[:success] = "Comment created!"
-	    	redirect_to root_url
+	    	flash[:success] = "Yorum eklendi!"
 	    else
-	    	render 'static_pages/home'
+	    	flash[:error] = "Yorum kaydedilmedi!"
 	    end
+	    redirect_to(Wonder.find(@comment.wonder_id))
 	end
 
 	def destroy

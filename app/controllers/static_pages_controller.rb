@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-  	@wonders = Wonder.limit(5).order("RANDOM()")
+  	@wonders = Wonder.order("RANDOM()").limit(5)
   end
 
   def help
