@@ -12,15 +12,14 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><%= link_to "Anasayfa",    '#' %></li>
             <% if user_signed_in? %>
+              <li><%= link_to gravatar_for(current_user), edit_user_registration_path, class: "gravatarLink" %></li>
               <li><%= link_to current_user.email, edit_user_registration_path %></li>
               <li><%= link_to 'Çıkış', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'Kayıt ol', new_user_registration_path %></li>
               <li><%= link_to "Giriş", new_user_session_path %></li>
             <% end %>
-            <li><%= link_to "Yardım",    '#' %></li>
           </ul>
         </div>
       </div>
@@ -29,6 +28,10 @@
   <div class="tabsBar">
     <ul class="navbarBelow">
       <li class="active"><%= link_to "Anasayfa", root_path %></li>
+      <li><%= link_to "Harikalar", wonders_path %></li>
+      <li><%= link_to "Yeni Harika Ekle", new_wonder_path %></li>
+      <li><%= link_to "Rotalar", '#' %></li>
+      <li><%= link_to "Yeni Rota Ekle", '#' %></li>
       <li><%= link_to "Yardım",    '#' %></li>
     </ul>
   </div>

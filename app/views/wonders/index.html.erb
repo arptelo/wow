@@ -4,7 +4,7 @@
 <% @wonders.each do |w| %>
   <h2>
     <%= link_to w.name, w %>
-    <span class="comments">(<%= pluralize(w.comments.size, 'comment') %>)</span>
+    <span class="comments">(<%= w.comments.size %> yorum)</span>
   </h2>
 <% end %>
 </div>
