@@ -2,10 +2,13 @@
 
 <div id="wonders">
 <% @wonders.each do |w| %>
-  <h2>
-    <%= link_to w.name, w %>
-    <span class="comments">(<%= w.comments.size %> yorum)</span>
-  </h2>
+	<div class="indexWonder">
+		<div></div>
+  		<h2>
+    		<%= link_to w.name, w %>
+    		<span class="comments">(<%= w.comments.size %> yorum)</span>
+  		</h2>
+  	</div>
 <% end %>
 </div>
 

@@ -9,6 +9,7 @@
 	<%= form_for(@wonder) do |f| %>
 	  <div class="field">
 	  	<%= f.text_area(:name, placeholder: "İsim giriniz...") %>
+	  	<%= f.text_area(:type, placeholder: "Harika türünü giriniz...") %>
 	  	<%= f.hidden_field(:lat, :value => "") %>
 	  	<%= f.hidden_field(:lng, :value => "") %>
 	  </div>

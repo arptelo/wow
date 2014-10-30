@@ -2,7 +2,7 @@ class WondersController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :update]
   
   def index
-    @wonders = Wonder.text_search(params[:query]).page(params[:page]).per_page(3)
+    @wonders = Wonder.text_search(params[:query]).page(params[:page]).per_page(20)
   end
 
   def new

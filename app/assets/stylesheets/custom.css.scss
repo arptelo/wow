@@ -1,56 +1,11 @@
 @import "bootstrap";
+@import "compass";
+@import "compass/layout";
 
 /* mixins, variables, etc. */
 
 $mainColor: #007F46;
 $grayMediumLight: #eaeaea;
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@mixin box_shadow($hshadow: 0, $vshadow: 0, $blur: 0, $spread: 0, $color: #000) {
-  -webkit-box-shadow: $hshadow $vshadow $blur $spread $color;
-  -moz-box-shadow: $hshadow $vshadow $blur $spread $color;
-  box-shadow: $hshadow $vshadow $blur $spread $color;
-}
-
-@mixin background_size {
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-}
-
-@mixin background_gradient($color1, $color2, $color3) {
-  background: $color2; /* Old browsers */
-  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwOTk1NCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iIzAwN2Y0NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDk5NTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top,  $color1 0%, $color2 50%, $color3 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color1), color-stop(50%,$color2), color-stop(100%,$color3)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  $color1 0%,$color2 50%,$color3 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  $color1 0%,$color2 50%,$color3 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  $color1 0%,$color2 50%,$color3 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  $color1 0%,$color2 50%,$color3 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 ); /* IE6-8 */
-}
-
-@mixin border_radius($side: false, $corner: false, $val: 50%) {
-  $corner1: $corner;
-  @if $side {
-    $side: '-' + $side;
-    $corner: '-' + $corner;
-  } @else {
-    $side: '';
-    $corner1: '';
-    $corner: '';
-  }
-  -webkit-border#{$side}#{$corner}-radius: $val;
-  -moz-border-radius#{$side}#{$corner1}: $val;
-  border#{$side}#{$corner}-radius: $val;
-}
 
 /* universal */
 
@@ -62,6 +17,7 @@ html {
 body {
   height: 100%;
   color: #5a5a5a;
+  font-family: 'Roboto', 'serif';
 }
 
 section {
@@ -73,7 +29,7 @@ textarea {
 }
 
 .container-fluid {
-  background-image: url(subtle_freckles.png);
+  background-image: url(brickwall.png);
   background-position: top left;
 }
 
@@ -142,9 +98,9 @@ p {
         height: 40px;
         padding: 2px;
         margin: auto;
-        border: 1px solid lighten($gray, 70%);
-        @include border_radius;
-        @include box_shadow(1px, 1px, 1px, 0, lighten($gray, 20%));
+        border: 1px solid scale-lightness($gray, 70%);
+        @include border-radius(50%);
+        @include box-shadow(scale-lightness($gray, 20%) 0 1px 1px);
       }
     }
   }
@@ -153,10 +109,10 @@ p {
 .tabsBar {
   width: 100%;
   height: 40px;
-  @include background_gradient($mainColor ,lighten($mainColor, 5%), $mainColor);
+  @include background(linear-gradient(to bottom, $mainColor, scale-lightness($mainColor, 10%), $mainColor));
   border-top: 1px solid #347F59;
   border-bottom: 1px solid #347F59;
-  @include box_shadow(0, 1px, 1px, 0, #347F59);
+  @include box-shadow(#347F59 0 1px 1px 0);
   font-size: 0.9em;
   .navbarBelow {
     padding-left: 180px;
@@ -206,13 +162,13 @@ footer {
 
 #homeMap {
   position: absolute;
-  height: 300px;
-  top: 430px;
+  height: 150px;
+  top: 420px;
   right: 20px;
   width: 400px;
   z-index: 1;
-  margin: 10px;
-  border: 5px solid white;
+  border: 3px solid white;
+  @include border-radius(1px);
 }
 
 #homeFoto {
@@ -220,7 +176,7 @@ footer {
   width: 100%;
   z-index: -1;
   background-repeat: no-repeat;
-  @include background_size;
+  @include background-size(cover);
   background-position: center center;
 }
 
@@ -233,12 +189,12 @@ footer {
   margin: -50px 0 0 -300px;
   background-color: rgba(246,246,246,0.8);
   border: 5px;
-  @include border_radius($val: 5px);
+  text-align: center;
+  @include border-radius(5px);
   .form-control {
     width: 300px;
     height: 50px;
-    margin-left: 25px;
-    @include border_radius($val: 0);
+    margin: 0 auto;
   }
   p {
     margin: 10px 25px;
@@ -258,12 +214,12 @@ footer {
 #info-div {
   position: absolute;
   left: 20px;
-  top: 550px;
+  top: 490px;
   z-index: 1;
   height: 80px;
   width: 381px;
   background-color: rgba(200,200,200,0.9);
-  border: 5px solid #FFFFFF;
+  border: 3px solid #FFFFFF;
   padding: 5px;
   font-size: 0.8em;
   display: table;
@@ -288,7 +244,7 @@ footer {
 #showFoto {
   position: relative;
   background-repeat: no-repeat;
-  @include background_size;
+  @include background-size(cover);
   background-position: center center;
 }
 
@@ -331,8 +287,8 @@ footer {
 #showCon {
   background-color: rgba(240, 240, 240, 1);
   border: 1px solid #e3e3e3;
-  @include border_radius(bottom, right, 5px);
-  @include border_radius(bottom, left, 5px);
+  @include border-bottom-right-radius(5px);
+  @include border-bottom-left-radius(5px);
 }
 
 #showSidebar {
@@ -341,14 +297,14 @@ footer {
 /* createpage */
 
 #createMap {
-  height:100%;
+  height:500px;
   width: 100%;
   z-index: -1;
 }
 
 #formDiv {
   position: absolute;
-  top: 45%;
+  top: 450px;
   right: 40px;
   height: 100px;
   width: 400px;
@@ -375,5 +331,5 @@ footer {
   float: left;
   width: 100%;
   margin-top: 45px;
-  @include box_sizing;
+  @include box-sizing(border-box);
 }
