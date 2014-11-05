@@ -18,6 +18,8 @@ body {
   height: 100%;
   color: #5a5a5a;
   font-family: 'Roboto', 'serif';
+  background-image: url(handmadepaper.png);
+  background-position: top left;
 }
 
 section {
@@ -28,9 +30,8 @@ textarea {
   resize: vertical;
 }
 
-.container-fluid {
-  background-image: url(brickwall.png);
-  background-position: top left;
+.row {
+  margin: 20px;
 }
 
 /* typography */
@@ -60,7 +61,6 @@ p {
   line-height: 1.7em;
 }
 
-
 /* header */
 
 #logo {
@@ -78,14 +78,16 @@ p {
 
 .navbar-wrapper {
   height: 50px;
+  width: 100%;
   border-bottom: 1px solid $grayMediumLight;
   background-color: #FFF;
+  margin: 0;
   .navbar {
     background-image: none;
     margin: 0;
     .container {
       width: auto;
-      padding: 0 100px;
+      padding: 0 180px;
       a {
         color: #5a5a5a;
         padding: 13px 15px;
@@ -187,7 +189,7 @@ footer {
   width: 600px;
   height: 150px;
   margin: -50px 0 0 -300px;
-  background-color: rgba(246,246,246,0.8);
+  background-color: rgba(80,80,80,0.8);
   border: 5px;
   text-align: center;
   @include border-radius(5px);
@@ -199,6 +201,7 @@ footer {
   p {
     margin: 10px 25px;
     font-size: 2em;
+    color: white;
   }
 }
 
@@ -233,12 +236,6 @@ footer {
 
 #showMap {
   height:400px;
-  width: 100%;
-  z-index: -1;
-}
-
-#showCon {
-  padding: 20px;
 }
 
 #showFoto {
@@ -285,13 +282,22 @@ footer {
 }
 
 #showCon {
-  background-color: rgba(240, 240, 240, 1);
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #FFFFFF;
   border: 1px solid #e3e3e3;
-  @include border-bottom-right-radius(5px);
-  @include border-bottom-left-radius(5px);
+  @include border-radius(5px);
 }
 
 #showSidebar {
+}
+
+.showProp {
+  text-size: 0.9em;
+  list-style: none;
+  .showPropKey {
+    font-weight: bold;
+  }
 }
 
 /* createpage */

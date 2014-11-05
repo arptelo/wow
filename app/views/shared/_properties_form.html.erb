@@ -1,28 +1,5 @@
 <%= form_for(@wonder) do |f| %>
   <div class='clearfix attributeContainer'>
-    <label class="label" for="wonder_properties">Özellikler</label>
-    <div class='row'>
-      <p class='col-md-5 underline'>İsim</p>
-      <p class='col-md-5 underline'>Değer</p>
-    </div>
-    <% if @wonder.properties.present? %>
-      <%= f.fields_for :properties do |d| %>
-        <% @wonder.properties.each do |key, value| %>
-          <div class="row">
-            <p class='col-md-5'>
-              <%= text_field_tag key, key, :class => 'text_field dynamicAttributeName' %>
-            </p>
-            <p class='col-md-5'>
-              <%= d.text_field key, :class => 'text_field', :value => value %>
-            </p>
-            <p class='col-md-1'>
-              <a herf='#' class='btn removeRow'>X</a>
-            </p>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-
     <div class='row attributeTemplate <%= 'hide' if @wonder.properties.present? %>'>
       <p class='col-md-3'>
         <input class='text_field dynamicAttributeName' id='' name='' placeholder='Yeni Özellik İsmi' size='30' type='text' />
@@ -30,11 +7,13 @@
       <p class='col-md-3'><input class='text_field' id='bar' name='' placeholder='Değer' size='30'  type='text'  /></p>
       <p class='col-md-1'><a herf='#' class='btn removeRow'>X</a></p>
     </div>
-    <%= link_to 'Yeni Özellik Ekle', '#', :class => 'btn addAttribute btn-primary' %>
+    <%= link_to 'Yeni Özellik Ekle', '#', :class => 'addAttribute' %>
   </div>
 
   <div class="form-actions">
-    <%= f.submit 'Kaydet', :class => 'btn primary' %> ya da
-    <%= link_to "İptal", request.referrer || wonder_path %>
+    <div class='showFormButtons hide'>
+      <%= f.submit 'Kaydet', class: 'btn primary' %> ya da
+      <%= link_to "İptal", request.referrer || wonder_path %>
+    </div>
   </div>
 <% end %>

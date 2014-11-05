@@ -10,7 +10,6 @@ $(document).ready ->
 		getPhotos lat, lng, $('.foto'), $('#fotoInfo'), false, 'medium'
 
 	$('#createMap').find('input').each ->
-		console.log $(@).data('lat')
 		placeMarker $(@).data('lat'), $(@).data('lng')
 
 	$('.attributeContainer').delegate '.dynamicAttributeName', 'keyup', (event) ->
@@ -25,6 +24,8 @@ $(document).ready ->
      	console.log($(this).closest('.row'))
      	$(this).closest('.row').html('');
 
-    $('.addAttribute').on 'click', ->
-     	contents = "<div class='row'>" + $('.attributeTemplate').html() + '</div>'
-     	$(this).before(contents)
+    $('.addAttribute').on 'click', (e) ->
+    	e.preventDefault()
+    	contents = "<div class='row'>" + $('.attributeTemplate').html() + '</div>'
+    	$(this).before(contents)
+    	$('.showFormButtons').removeClass 'hide'
