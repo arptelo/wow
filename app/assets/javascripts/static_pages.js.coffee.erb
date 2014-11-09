@@ -8,16 +8,20 @@ counter = 0
 wonderCounter = 0
 timerId = 0
 
+$(document).ready ->
+	#//initialize()
+	#//nextWonder()
+
 @initialize = () ->
 	styles = [
 	    "featureType": "water",
 	    "stylers": [
-	    	"color": "#1BCC95"
+	    	"color": "#99B2CC"
 	    ]
 	,
 	    "featureType": "landscape",
 	    "stylers": [
-	    	"color": "#FFC019"
+	    	"color": "#E58F39"
 	    ]
 	,
 	    "featureType": "road",
@@ -51,7 +55,10 @@ timerId = 0
 		overviewMapControl: false,
 		styles: styles
 	@map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions)
-	image = "<%= asset_path 'pisa.png' %>"
+	image =
+		url: "<%= asset_path 'eiffel.png' %>",
+		anchor: new google.maps.Point(28, 37)
+
 	marker = new google.maps.Marker
 		map: @map,
 		icon: image
@@ -100,7 +107,3 @@ nextWonder = ->
 			wonderCounter = 0
 		else
 			wonderCounter++
-
-$(document).ready ->
-	initialize()
-	nextWonder()

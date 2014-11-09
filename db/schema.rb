@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029182916) do
+ActiveRecord::Schema.define(version: 20141109183455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20141029182916) do
   end
 
   add_index "comments", ["wonder_id", "user_id", "created_at"], name: "index_comments_on_wonder_id_and_user_id_and_created_at", using: :btree
+
+  create_table "ratings", force: true do |t|
+    t.decimal  "score"
+    t.integer  "user_id"
+    t.integer  "wonder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["user_id", "created_at"], name: "index_ratings_on_user_id_and_created_at", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+  add_index "ratings", ["wonder_id"], name: "index_ratings_on_wonder_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

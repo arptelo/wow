@@ -4,7 +4,7 @@
 
 /* mixins, variables, etc. */
 
-$mainColor: #007F46;
+$mainColor: #2F77BF;
 $grayMediumLight: #eaeaea;
 
 /* universal */
@@ -77,32 +77,41 @@ p {
 }
 
 .navbar-wrapper {
-  height: 50px;
+  height: 60px;
   width: 100%;
   border-bottom: 1px solid $grayMediumLight;
   background-color: #FFF;
   margin: 0;
+  font-size: 12px;
   .navbar {
     background-image: none;
     margin: 0;
     .container {
       width: auto;
       padding: 0 180px;
-      a {
-        color: #5a5a5a;
-        padding: 13px 15px;
-        height: 50px;
+      li {
+        margin: 10px 0;
+        a {
+          color: #5a5a5a;
+          padding: 10px;
+          height: 40px;
+          @include border-radius(4px);
+          &:hover {
+            background-color: scale-lightness($mainColor, 10%);
+            color: white;
+          };
+          &:not(.userEmail){
+            text-transform: uppercase;
+          }
+        }
       }
-      .gravatarLink {
-        padding: 5px;
+      .gravatar {
+        padding: 0;
       }
       .nav img {
         height: 40px;
         padding: 2px;
         margin: auto;
-        border: 1px solid scale-lightness($gray, 70%);
-        @include border-radius(50%);
-        @include box-shadow(scale-lightness($gray, 20%) 0 1px 1px);
       }
     }
   }
@@ -111,23 +120,26 @@ p {
 .tabsBar {
   width: 100%;
   height: 40px;
-  @include background(linear-gradient(to bottom, $mainColor, scale-lightness($mainColor, 10%), $mainColor));
-  border-top: 1px solid #347F59;
-  border-bottom: 1px solid #347F59;
-  @include box-shadow(#347F59 0 1px 1px 0);
+  @include background(linear-gradient(to bottom, scale-lightness($mainColor, 10%), $mainColor, scale-lightness($mainColor, 10%)));
+  border-top: 1px solid scale-lightness($mainColor, 10%);
+  border-bottom: 1px solid scale-lightness($mainColor, 10%);
+  @include box-shadow(scale-lightness($mainColor, 10%) 0 1px 1px 0);
   font-size: 0.9em;
   .navbarBelow {
     padding-left: 180px;
     li {
       list-style-type: none;
-      display: inline;
+      display: inline-block;
       text-decoration: none;
       line-height: 40px;
-      padding-right: 20px;
+      padding-right: 10px;
       a {
+        display: inline-block;
         color: $grayMediumLight;
+        padding: 0 4px;
         &:hover {
           text-decoration: none;
+          background-color: scale-lightness($mainColor, -10%);
         }
       }
     }
@@ -162,34 +174,30 @@ footer {
 
 /* homepage */
 
-#homeMap {
-  position: absolute;
-  height: 150px;
-  top: 420px;
-  right: 20px;
-  width: 400px;
-  z-index: 1;
-  border: 3px solid white;
-  @include border-radius(1px);
-}
-
 #homeFoto {
   height: 500px;
   width: 100%;
   z-index: -1;
+  background: url(eiffel.jpg);
+  @include filter(brightness(0.4));
   background-repeat: no-repeat;
   @include background-size(cover);
   background-position: center center;
 }
 
+#homeMap {
+  height: 150px;
+  width: 100%;
+  margin: 40px 0;
+  padding: 0 40px;
+  @include border-radius(1px);
+}
+
 .searchForm {
   position: absolute;
   top: 220px;
-  left: 50%;
-  width: 600px;
-  height: 150px;
-  margin: -50px 0 0 -300px;
-  background-color: rgba(80,80,80,0.8);
+  width: 100%;
+  font-size: 2em;
   border: 5px;
   text-align: center;
   @include border-radius(5px);
@@ -199,7 +207,7 @@ footer {
     margin: 0 auto;
   }
   p {
-    margin: 10px 25px;
+    margin: 0 auto;
     font-size: 2em;
     color: white;
   }
@@ -212,24 +220,6 @@ footer {
 .container-fluid {
   height: 600px;
   padding: 0;
-}
-
-#info-div {
-  position: absolute;
-  left: 20px;
-  top: 490px;
-  z-index: 1;
-  height: 80px;
-  width: 381px;
-  background-color: rgba(200,200,200,0.9);
-  border: 3px solid #FFFFFF;
-  padding: 5px;
-  font-size: 0.8em;
-  display: table;
-  span {
-    display: table-cell;
-    vertical-align: middle;
-  }
 }
 
 /* showpage */
@@ -276,7 +266,7 @@ footer {
   color: $gray-light;
 }
 
-.gravatar {
+.commentGravatar {
   float: left;
   margin-right: 10px;
 }

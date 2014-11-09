@@ -11,6 +11,7 @@
 				</ul>
 			<% end %>
 			<% if signed_in? %>
+				<%= render 'shared/ratings_form' %>
 				<%= render 'shared/properties_form' %>
 			<% end %>
 		</div>

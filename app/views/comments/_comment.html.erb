@@ -1,5 +1,5 @@
 <li>
-	<%= link_to gravatar_for(comment.user), wonders_path %>
+	<%= link_to gravatar_for(comment.user), wonders_path, class: 'commentGravatar' %>
 	<span class="content"><%= comment.content %></span>
 	<span class="timestamp">
 		<%= comment.created_at %>
