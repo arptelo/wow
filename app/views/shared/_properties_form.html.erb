@@ -7,7 +7,9 @@
       <p class='col-md-3'><input class='text_field' id='bar' name='' placeholder='Değer' size='30'  type='text'  /></p>
       <p class='col-md-1'><a herf='#' class='btn removeRow'>X</a></p>
     </div>
-    <%= link_to 'Yeni Özellik Ekle', '#', :class => 'addAttribute' %>
+    <%= link_to '#', :class => 'addAttribute' do %>
+      <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>Yeni Özellik Ekle
+    <% end %>
   </div>
 
   <div class="form-actions">
