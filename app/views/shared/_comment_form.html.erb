@@ -1,7 +1,7 @@
 <%= form_for(@comment) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-		<%= f.text_area :content, placeholder: "Yorum giriniz...", rows: 1 %>
+		<%= f.text_area :content, placeholder: "Yorum giriniz...", rows: 4 %>
 		<%= f.hidden_field(:wonder_id, :value => @wonder.id) %>
 	</div>
 	<%= f.submit "Gönder", class: "btn btn-large btn-primary" %>

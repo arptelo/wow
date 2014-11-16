@@ -3,27 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 @map = {}
-marker = {}
-counter = 0
-wonderCounter = 0
-timerId = 0
 
 $(document).ready ->
-	initialize()
-	#//nextWonder()
+	if $('.map').length > 0
+		initializeMap()
 
-@initialize = () ->
+@initializeMap = () ->
 	styles = [
-	    "featureType": "water",
-	    "stylers": [
-	    	"color": "#99B2CC"
-	    ]
-	,
-	    "featureType": "landscape",
-	    "stylers": [
-	    	"color": "#E58F39"
-	    ]
-	,
+		"stylers": [
+    		"hue": "#2F77BF"
+    	]
+    ,
 	    "featureType": "road",
 	    "stylers": [
 	    	"visibility": "off"
@@ -55,35 +45,6 @@ $(document).ready ->
 		overviewMapControl: false,
 		styles: styles
 	@map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions)
-	image =
-		url: "<%= asset_path 'eiffel.png' %>",
-		anchor: new google.maps.Point(28, 37)
-
-	marker = new google.maps.Marker
-		map: @map,
-		icon: image
-	google.maps.event.addListener @map, 'click', (event) ->
-		placeMarker event.latLng.lat(), event.latLng.lng()
-		clearInterval timerId
-		getPhotos event.latLng.lat(), event.latLng.lng(), $('.foto'), $('#info-div'), true
-		$('#wonder_lat').val(event.latLng.lat())
-		$('#wonder_lng').val(event.latLng.lng())
-
-@placeMarker = (lat, lng) ->
-	location = new google.maps.LatLng(lat, lng)
-	marker.setPosition location
-	@map.setCenter new google.maps.LatLng location.lat(), location.lng()
-
-changeBgImage = ($fotoDiv, $infoDiv, data) ->
-	if counter == data.photos.length
-		counter = 0
-		nextWonder()
-	else
-		$fotoDiv.css 'background-image', 'url(' + data.photos[counter].photo_file_url + ')'
-		$('#showFoto').css 'height', data.photos[counter].height
-		$('#showFoto').css 'width', data.photos[counter].width
-		$infoDiv.find('#pOwner').html($infoDiv.find('input').eq(wonderCounter-1).data('name') + "<br>" + data.photos[counter].photo_title + "<br>Fotoğraf Sahibi: " + data.photos[counter].owner_name)
-		counter++
 
 @getPhotos = (lat, lng, $fotoDiv, $infoDiv, putMarker = false, photoSize = 'original') ->
 	url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=3&minx=' + lng + '&miny=' + lat + '&maxx=' + (lng+0.005) + '&maxy=' + (lat+0.005) + '&callback=?&size=' + photoSize + '&mapfilter=false'
@@ -98,12 +59,3 @@ changeBgImage = ($fotoDiv, $infoDiv, data) ->
 			, 10000
 		.fail ->
 			console.log "Error"
-
-nextWonder = ->
-	$wonderInput = $('#info-div').find('input')
-	if $wonderInput.length > 0
-		getPhotos parseFloat($wonderInput.eq(wonderCounter).data('lat')), parseFloat($wonderInput.eq(wonderCounter).data('lng')), $('.foto'), $('#info-div'), true
-		if wonderCounter == $wonderInput.length-1
-			wonderCounter = 0
-		else
-			wonderCounter++

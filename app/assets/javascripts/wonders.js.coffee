@@ -1,14 +1,10 @@
 $(document).ready ->
-	initialize()
 	$wonderInput = $('#wonderChoosen').find('input')
 	if $wonderInput.length == 1
 		lat = parseFloat($wonderInput.data('lat'))
 		lng = parseFloat($wonderInput.data('lng'))
 		map.setCenter new google.maps.LatLng lat, lng
 		getPhotos lat, lng, $('.foto'), $('#fotoInfo'), false, 'medium'
-
-	$('#createMap').find('input').each ->
-		placeMarker $(@).data('lat'), $(@).data('lng')
 
 	$('.attributeContainer').delegate '.dynamicAttributeName', 'keyup', (event) ->
     	nameElem  = $(@)

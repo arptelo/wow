@@ -1,3 +1,5 @@
+$grid-columns: 41;
+
 @import "bootstrap";
 @import "compass";
 @import "compass/layout";
@@ -6,6 +8,28 @@
 
 $mainColor: #2F77BF;
 $grayMediumLight: #eaeaea;
+
+@mixin fotoNameAndSize($fotoUrl, $height) {
+  background-repeat: no-repeat;
+  @include background-size(cover);
+  background-position: center center;
+  height: $height;
+  background-image: url($fotoUrl);
+}
+
+@mixin fotoTransition($fotoUrl, $height) {
+  @include fotoNameAndSize($fotoUrl, $height);
+  color: rgba(255,255,255,0);
+  font-size: 16px;
+  @include transition(0.5s);
+  &:hover {
+    color: rgba(255,255,255,1);
+    @include filter(brightness(0.4));
+    &+p {
+      color: rgba(255,255,255,1);
+    }
+  }
+}
 
 /* universal */
 
@@ -30,8 +54,19 @@ textarea {
   resize: vertical;
 }
 
+.pageCon {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #e3e3e3;
+  @include border-radius(5px);
+  ul {
+    padding: 0;
+  }
+}
+
 .row {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* typography */
@@ -147,6 +182,10 @@ p {
   }
 }
 
+.homeHeaders {
+  text-align: center;
+}
+
 /* footer */
 
 footer {
@@ -176,22 +215,10 @@ footer {
 /* homepage */
 
 #homeFoto {
-  height: 500px;
+  @include fotoNameAndSize('eiffel.jpg', 500px);
   width: 100%;
   z-index: -1;
-  background: url(eiffel.jpg);
   @include filter(brightness(0.4));
-  background-repeat: no-repeat;
-  @include background-size(cover);
-  background-position: center center;
-}
-
-#homeMap {
-  height: 150px;
-  width: 100%;
-  margin: 40px 0;
-  padding: 0 40px;
-  @include border-radius(1px);
 }
 
 .searchForm {
@@ -214,13 +241,42 @@ footer {
   }
 }
 
-#map-canvas {
-  height: 100%;
+.container-fluid {
+  padding: 0;
 }
 
-.container-fluid {
-  height: 600px;
-  padding: 0;
+.wonderPhotos1 {
+  @include fotoTransition('eiffel2.jpg', 200px);
+}
+
+.wonderPhotos2 {
+  @include fotoTransition('goldenGate.jpg', 200px);
+}
+
+.wonderPhotos3 {
+  @include fotoTransition('orientalPearl.jpg', 200px);
+}
+
+.countryPhotos1 {
+  @include fotoTransition('turkey.jpg', 200px);
+}
+
+.countryPhotos2 {
+  @include fotoTransition('greece.jpg', 200px);
+}
+
+.countryPhotos3 {
+  @include fotoTransition('usa.jpg', 200px);
+}
+
+.fotoExp {
+  position: absolute;
+  top: 92px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,0);
+  font-size: 1.3em;
+  padding-right: 30px;
 }
 
 /* showpage */
@@ -248,7 +304,8 @@ footer {
   .field {
     width: 100%;
     textarea {
-      width: 100%
+      width: 100%;
+      @include border-radius(2px);
     }
   }
 }
@@ -273,17 +330,6 @@ footer {
 .commentGravatar {
   float: left;
   margin-right: 10px;
-}
-
-#showCon {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #FFFFFF;
-  border: 1px solid #e3e3e3;
-  @include border-radius(5px);
-  ul {
-    padding: 0;
-  }
 }
 
 #showSidebar {

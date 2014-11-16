@@ -1,12 +1,12 @@
 <% provide(:title, 'Dünyanın harikaları') %>
-<div class='container' id='showCon'>
+<div class='container pageCon' >
 	<div class='row'>
-		<div class='col-md-12'>
-			<h1><%= @wonder.name %></h1>
+		<div class='col-md-41'>
+			<h1><%= image_tag 'pisa.png', alt:'wonderStamp' %> <%= @wonder.name %></h1>
 		</div>
 	</div>
-	<div class='row'>	
-		<div class='col-md-6'>
+	<div class='row'>
+		<div class='col-md-20'>
 			<% if @wonder.properties.present? %>
 				<ul>
 				<% @wonder.properties.each do |key, value| %>
@@ -19,13 +19,13 @@
 				<%= render 'shared/properties_form' %>
 			<% end %>
 		</div>
-		<div class='col-md-6 map' id='showMap'>
+		<div class='col-md-20 map' id='showMap'>
 			<div id='map-canvas'></div>
 		</div>
 	</div>
 	<hr>
 	<div class='row'>
-		<div class='col-md-6' id='wonderChoosen'>
+		<div class='col-md-20' id='wonderChoosen'>
 			<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
 			<div class='foto' id='showFoto'></div>
 			<div id='fotoInfo'>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div class='row'>
-		<div class='col-md-9' id='commentDiv'>
+		<div class='col-md-30' id='commentDiv'>
 			<% if signed_in? %>
 				<%= render 'shared/comment_form' %>
 			<% end %>

@@ -1,11 +1,26 @@
 <% provide(:title, 'Anasayfa') %>
-<div class='foto' id='homeFoto'></div>
+<div id='homeFoto'></div>
 <div class="searchForm">
 	<p>Dünyanın harikalarını keşfedin</p>
 	<%= form_tag wonders_path, method: :get do %>
 		<%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Bul..." %>
 	<% end %>
 </div>
-<div class='map' id='homeMap'>
-	<div id='map-canvas'></div>
+<div class='container pageCon'>
+  <div class='row'>
+    <h3 class='homeHeaders'>Harikalar</h3>
+  </div>
+  <div class='row'>
+    <div class='col-md-13'><div class='wonderPhotos1'></div><p class='fotoExp'>Eiffel Kulesi</p></div>
+    <div class='col-md-13 col-md-offset-1'><div class='wonderPhotos2'></div><p class='fotoExp'>Golden Gate Köprüsü</p></div>
+    <div class='col-md-13 col-md-offset-1'><div class='wonderPhotos3'></div><p class='fotoExp'>Orient Pearl Kulesi</p></div>
+  </div>
+  <div class='row'>
+    <h3 class='homeHeaders'>Ülkeler</h3>
+  </div>
+  <div class='row'>
+    <div class='col-md-13'><div class='countryPhotos1'></div><p class='fotoExp'>Türkiye</p></div>
+    <div class='col-md-13 col-md-offset-1'><div class='countryPhotos2'></div><p class='fotoExp'>Yunanistan</p></div>
+    <div class='col-md-13 col-md-offset-1'><div class='countryPhotos3'></div><p class='fotoExp'>ABD</p></div>
+  </div>
 </div>
