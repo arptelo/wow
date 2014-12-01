@@ -11,21 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109183455) do
+ActiveRecord::Schema.define(version: 20141130181327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "comments", force: true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.integer  "wonder_id"
+  create_table "best_tags", force: true do |t|
+    t.integer  "wonder_type_id"
+    t.integer  "property_tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["wonder_id", "user_id", "created_at"], name: "index_comments_on_wonder_id_and_user_id_and_created_at", using: :btree
+  add_index "best_tags", ["property_tag_id"], name: "index_best_tags_on_property_tag_id", using: :btree
+  add_index "best_tags", ["wonder_type_id"], name: "index_best_tags_on_wonder_type_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+  end
+
+  create_table "property_tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ratings", force: true do |t|
     t.decimal  "score"
@@ -57,6 +72,12 @@ ActiveRecord::Schema.define(version: 20141109183455) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "wonder_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "wonders", force: true do |t|
     t.string   "name"
     t.decimal  "lat"
@@ -65,9 +86,10 @@ ActiveRecord::Schema.define(version: 20141109183455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "properties"
-    t.string   "type"
+    t.integer  "wonder_type_id"
   end
 
   add_index "wonders", ["user_id", "created_at"], name: "index_wonders_on_user_id_and_created_at", using: :btree
+  add_index "wonders", ["wonder_type_id"], name: "index_wonders_on_wonder_type_id", using: :btree
 
 end

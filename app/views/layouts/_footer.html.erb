@@ -1,12 +1,30 @@
-<footer class="footer">
-  <small>
-    Dünyanın Harikaları
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "Hakkında",   '#' %></li>
-      <li><%= link_to "İletişim", '#' %></li>
-      <li><a href="#">Haberler</a></li>
+<footer class="footer container-fluid">
+  <div class="row footerFirstRow">
+    <div class="col-md-41"></div>
+  </div>
+  <div class="footerCenter row">
+    <ul class="col-md-6 col-md-offset-9">
+      <li>Anasayfa</li>
+      <li>Harikalar</li>
+      <li>Rotalar</li>
+      <li>Uzman Görüşleri</li>
     </ul>
-  </nav>
+    <ul class='col-md-6'>
+      <li><%= link_to "Hakkında", '#' %></li>
+      <li><%= link_to "İletişim", '#' %></li>
+      <li><%= link_to "Haberler", '#' %></li>
+      <li><%= link_to "Yardım", '#' %></li>
+      <li><%= link_to "Kullanım Koşulları", '#' %></li>
+    </ul>
+    <ul class='col-md-6'>
+      <li><%= link_to "Kaydol", '#' %></li>
+      <li><%= link_to "Giriş", '#' %></li>
+      <li><%= link_to "Düzenle", '#' %></li>
+    </ul>
+    <ul class='col-md-6'>
+      <%= form_tag wonders_path, method: :get do %>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Bul" %>
+      <% end %>
+    </ul>
+  </div>
 </footer>

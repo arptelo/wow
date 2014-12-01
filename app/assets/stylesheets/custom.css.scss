@@ -1,5 +1,6 @@
 $grid-columns: 41;
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "compass";
 @import "compass/layout";
@@ -94,6 +95,10 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+#map-canvas {
+  height:100%;
 }
 
 /* header */
@@ -191,23 +196,26 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
+  color: #888;
+  @include fotoNameAndSize('footerWonders.png', 450px);
+  width: 100%;
+  .footerFirstRow {
+    height: 250px;
   }
-  small {
-    float: left;
+  .row {
+    margin: 0 0;
+  }
+  a {
+    color: #888;
   }
   ul {
-    float: right;
     list-style: none;
     li {
-      float: left;
       margin-left: 10px;
+    }
+    .form-control {
+      @include fotoNameAndSize('search.png', 30px);
+      width: 150px;
     }
   }
 }
@@ -245,28 +253,11 @@ footer {
   padding: 0;
 }
 
-.wonderPhotos1 {
-  @include fotoTransition('eiffel2.jpg', 200px);
-}
-
-.wonderPhotos2 {
-  @include fotoTransition('goldenGate.jpg', 200px);
-}
-
-.wonderPhotos3 {
-  @include fotoTransition('orientalPearl.jpg', 200px);
-}
-
-.countryPhotos1 {
-  @include fotoTransition('turkey.jpg', 200px);
-}
-
-.countryPhotos2 {
-  @include fotoTransition('greece.jpg', 200px);
-}
-
-.countryPhotos3 {
-  @include fotoTransition('usa.jpg', 200px);
+$homePagePhotos: eiffel2 goldenGate orientalPearl turkey greece usa;
+@each $p in $homePagePhotos {
+  .wonderPhotos#{index($homePagePhotos, $p)}{
+    @include fotoTransition('#{$p}.jpg', 200px);
+  }
 }
 
 .fotoExp {
@@ -288,15 +279,12 @@ footer {
   @include border-radius(2px);
 }
 
-#showFoto {
+#wapiblock {
   position: relative;
   background-repeat: no-repeat;
   @include background-size(cover);
   background-position: center center;
-}
-
-#fotoInfo {
-  z-index: 99;
+  height: 200px;
 }
 
 #commentDiv {
@@ -336,7 +324,7 @@ footer {
 }
 
 .showProp {
-  text-size: 0.9em;
+  font-size: 0.9em;
   list-style: none;
   .showPropKey {
     font-weight: bold;
@@ -359,25 +347,26 @@ hr {
 /* createpage */
 
 #createMap {
-  height:500px;
+  height:300px;
   width: 100%;
   z-index: -1;
 }
 
 #formDiv {
-  position: absolute;
-  top: 450px;
-  right: 40px;
-  height: 100px;
-  width: 400px;
-  background-color: rgba(240,240,240,0.8);
   padding: 10px;
   margin: auto;
-  z-index: 1;
-  border: 1px solid #c2c2c2;
   textarea {
     width: 100%;
   }
+}
+
+.newCon {
+  margin-top: 20px;
+}
+
+.propHeader {
+  text-align: right;
+  font-weight: bold;
 }
 
 /* index */

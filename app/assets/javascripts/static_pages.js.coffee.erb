@@ -19,11 +19,6 @@ $(document).ready ->
 	    	"visibility": "off"
 	    ]
 	,
-	    "featureType": "poi",
-	    "stylers": [
-	    	"visibility": "off"
-	    ]
-	,
 	    "featureType": "administrative.province",
 	    "stylers": [
 	    	"visibility": "simplified"
@@ -46,16 +41,12 @@ $(document).ready ->
 		styles: styles
 	@map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions)
 
-@getPhotos = (lat, lng, $fotoDiv, $infoDiv, putMarker = false, photoSize = 'original') ->
-	url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=3&minx=' + lng + '&miny=' + lat + '&maxx=' + (lng+0.005) + '&maxy=' + (lat+0.005) + '&callback=?&size=' + photoSize + '&mapfilter=false'
-	$.getJSON(url, {format: 'jsonp'})
-		.done (data) ->
-			if putMarker
-				placeMarker lat, lng
-			changeBgImage $fotoDiv, $infoDiv, data
-			clearInterval timerId
-			timerId = setInterval ->
-				changeBgImage $fotoDiv, $infoDiv, data
-			, 10000
-		.fail ->
-			console.log "Error"
+@getPhotos = (lat, lng, photoSize = 'original') ->
+	myOptions = 
+  		'width': 300,
+  		'height': 200
+	myRequest = new panoramio.PhotoRequest
+		'rect': {'sw': {'lat': lat, 'lng': lng}, 'ne': {'lat': (lat+0.005), 'lng': (lng+0.005)}}
+	wapiblock = document.getElementById('wapiblock')
+	widget = new panoramio.PhotoWidget(wapiblock, myRequest, myOptions)
+	widget.setPosition(0)

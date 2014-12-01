@@ -1,11 +1,15 @@
 <%= form_for(@wonder) do |f| %>
-  <div class='clearfix attributeContainer'>
+  <div class='attributeContainer'>
     <div class='row attributeTemplate <%= 'hide' if @wonder.properties.present? %>'>
       <p class='col-md-3'>
-        <input class='text_field dynamicAttributeName' id='' name='' placeholder='Yeni Özellik İsmi' size='30' type='text' />
+        <input class='text_field dynamicAttributeName' id='' name='' placeholder='Yeni Özellik İsmi' size='15' type='text' />
       </p>
-      <p class='col-md-3'><input class='text_field' id='bar' name='' placeholder='Değer' size='30'  type='text'  /></p>
-      <p class='col-md-1'><a herf='#' class='btn removeRow'>X</a></p>
+      <p class='col-md-3'>
+        <input class='text_field' id='bar' name='' placeholder='Değer' size='15'  type='text'  />
+      </p>
+      <p class='col-md-1'>
+        <a herf='#' class='btn removeRow'>X</a>
+      </p>
     </div>
     <%= link_to '#', :class => 'addAttribute' do %>
       <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>Yeni Özellik Ekle

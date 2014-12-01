@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class='row'>
-		<div class='col-md-20'>
+		<div class='col-md-13'>
 			<% if @wonder.properties.present? %>
 				<ul>
 				<% @wonder.properties.each do |key, value| %>
@@ -19,20 +19,15 @@
 				<%= render 'shared/properties_form' %>
 			<% end %>
 		</div>
-		<div class='col-md-20 map' id='showMap'>
+		<div class='col-md-13 col-md-offset-1' id='wonderChoosen'>
+			<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
+			<div class='foto' id='wapiblock'></div>
+		</div>
+		<div class='col-md-13  col-md-offset-1 map' id='showMap'>
 			<div id='map-canvas'></div>
 		</div>
 	</div>
 	<hr>
-	<div class='row'>
-		<div class='col-md-20' id='wonderChoosen'>
-			<input type='hidden' data-name="<%= @wonder.name %>" data-lat=<%= @wonder.lat %> data-lng=<%= @wonder.lng %> >
-			<div class='foto' id='showFoto'></div>
-			<div id='fotoInfo'>
-				<span id='pOwner'></span>
-			</div>
-		</div>
-	</div>
 	<div class='row'>
 		<div class='col-md-30' id='commentDiv'>
 			<% if signed_in? %>

@@ -1,18 +1,40 @@
 <% provide(:title, 'Dünyanın harikaları') %>
-<div class='map' id='createMap'>
-	<div id='map-canvas'></div>
-	<% @wonders.each do |wonder| %>
-		<input type='hidden' data-name="<%= wonder.name %>" data-lat=<%= wonder.lat %> data-lng=<%= wonder.lng %> >
-	<% end %>
+<div class="container pageCon">
+	<div class='map' id='createMap'>
+		<div id='map-canvas'></div>
+		<% @wonders.each do |wonder| %>
+			<input type='hidden' data-name="<%= wonder.name %>" data-lat=<%= wonder.lat %> data-lng=<%= wonder.lng %> >
+		<% end %>
+	</div>
 </div>
-<div id='formDiv'>
-	<%= form_for(@wonder) do |f| %>
-	  <div class="field">
-	  	<%= f.text_area(:name, placeholder: "İsim giriniz...") %>
-	  	<%= f.text_area(:type, placeholder: "Harika türünü giriniz...") %>
-	  	<%= f.hidden_field(:lat, :value => "") %>
-	  	<%= f.hidden_field(:lng, :value => "") %>
-	  </div>
-	  <%= f.submit "Ekle", class: "btn btn-large btn-primary" %>
-	<% end %>
+<div class="container">
+	<div id='formDiv' class="row">
+		<div class="col-md-25 col-md-offset-6">
+			<%= form_for(@wonder) do |f| %>
+			  <div class="recomProp">
+			  	<div class="row">
+			  		<div class="col-md-15"><p class="propHeader">Ara: </p></div>
+			  		<div class="col-md-26"><input id="pac-input" class="controls" type="text" placeholder="Ara..."></div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col-md-15"><p class="propHeader">Harika İsmi: </p></div>
+			  		<div class="col-md-26"><%= f.text_area(:name, placeholder: "İsim giriniz...") %></div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col-md-15"><p class="propHeader">Harika Türü: </p></div>
+			  		<div class="col-md-26"><%= collection_select(:wonder, :wonder_type_id, WonderType.all, :id, :name) %></div>
+			  	</div>
+				  <% @propertyTags.each do |p| %>
+				  	<div class="row property hide">
+				  		<div class="col-md-15"><p class="propHeader"><%= p.name %> : </p></div>
+				  		<div class="col-md-26"><input class="text_field dynamicAttributeName" id="<%= 'wonder_properties_' + p.name %>" name="<%= 'wonder[properties][' + p.name + ']' %>" data-wtypes="<%= p.wonder_types.map{|c| c.name}.map(&:inspect).join(',') %>" placeholder="<%= p.name %> için değer..." type="text" ></div>
+			  		</div>
+			  	<% end %>
+			  </div>
+			  <%= f.hidden_field(:lat, :value => "") %>
+			  <%= f.hidden_field(:lng, :value => "") %>
+			  <%= f.submit "Ekle", class: "btn btn-large btn-primary" %>
+			<% end %>
+		</div>
+	</div>
 </div>

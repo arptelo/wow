@@ -56,3 +56,4 @@ end
 
 gem 'devise'
 gem 'pg_search'
+gem 'rb-readline', '~> 0.4.2'

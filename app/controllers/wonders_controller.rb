@@ -6,6 +6,7 @@ class WondersController < ApplicationController
   end
 
   def new
+    @propertyTags = PropertyTag.all
     @wonder = Wonder.new
     @wonders = Wonder.all
   end

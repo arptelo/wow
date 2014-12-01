@@ -1,7 +1,8 @@
 class Wonder < ActiveRecord::Base
 	belongs_to :user
-	has_many :comments, dependent: :destroy
+	has_many :comments, :as => :commentable
 	has_many :ratings, dependent: :destroy
+	belongs_to :wonder_type
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true
 
