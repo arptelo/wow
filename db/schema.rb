@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130181327) do
+ActiveRecord::Schema.define(version: 20141202203640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 20141130181327) do
 
   add_index "best_tags", ["property_tag_id"], name: "index_best_tags_on_property_tag_id", using: :btree
   add_index "best_tags", ["wonder_type_id"], name: "index_best_tags_on_wonder_type_id", using: :btree
+
+  create_table "checkpoints", force: true do |t|
+    t.string   "name"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.integer  "route_id"
+    t.integer  "order"
+    t.integer  "wonder_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checkpoints", ["route_id", "wonder_id"], name: "index_checkpoints_on_route_id_and_wonder_id", using: :btree
+  add_index "checkpoints", ["route_id"], name: "index_checkpoints_on_route_id", using: :btree
+  add_index "checkpoints", ["wonder_id"], name: "index_checkpoints_on_wonder_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -53,6 +69,16 @@ ActiveRecord::Schema.define(version: 20141130181327) do
   add_index "ratings", ["user_id", "created_at"], name: "index_ratings_on_user_id_and_created_at", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
   add_index "ratings", ["wonder_id"], name: "index_ratings_on_wonder_id", using: :btree
+
+  create_table "routes", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "routes", ["user_id", "created_at"], name: "index_routes_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
