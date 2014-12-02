@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 	    else
 	    	flash[:error] = "Yorum kaydedilmedi!"
 	    end
-	    redirect_to(Wonder.find(@comment.wonder_id))
+	    redirect_to(Wonder.find(@comment.commentable_id))
 	end
 
 	def destroy
@@ -17,6 +17,6 @@ class CommentsController < ApplicationController
 	private
 
 	    def comment_params
-	    	params.require(:comment).permit(:content, :wonder_id)
+	    	params.require(:comment).permit(:content, :commentable_id, :commentable_type)
 	    end
 end
