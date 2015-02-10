@@ -191,6 +191,15 @@ p {
   text-align: center;
 }
 
+.navbarFixer {
+  position: fixed;
+}
+
+.tabBarFixer {
+  position: fixed;
+  top: 60px;
+}
+
 /* footer */
 
 footer {
@@ -373,6 +382,25 @@ hr {
 
 #wonders {
   margin-top: 90px; 
+}
+
+/* routes_new_page */
+
+#routeNewMap {
+  height:200px;
+  width: 100%;
+  right: 0;
+  float: right;
+  z-index: -1;
+}
+
+.checkpoints {
+  position: fixed;
+  left: 0;
+  min-height: 600px;
+  width: 60%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* miscellaneous */

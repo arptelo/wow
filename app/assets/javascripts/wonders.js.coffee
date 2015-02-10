@@ -5,7 +5,7 @@ $(document).ready ->
 		lng = parseFloat($wonderInput.data('lng'))
 		map.setCenter new google.maps.LatLng lat, lng
 		getPhotos lat, lng, 'medium'
-
+        
 	$('.attributeContainer').on 'keyup', '.dynamicAttributeName', (event) ->
     	nameElem  = $(@)
     	valueElem = nameElem.closest('.row').children('p').children('.text_field')
