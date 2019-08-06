@@ -3,7 +3,7 @@ ruby '2.1.5'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.8'
-gem 'bootstrap-sass'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'sprockets', '2.11.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
@@ -54,5 +54,5 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'pg_search'
